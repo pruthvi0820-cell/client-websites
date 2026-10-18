@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adithya — Creative Professional</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f0e8;
+    --accent: #00e676;
+    --gold: #69ffb4;
+    --teal: #b9f6ca;
+    --purple: #00bfa5;
+    --dark: #080f0b;
+    --mid: #0d1a12;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transition: transform 0.1s ease;
+  }
+  .cursor-follower {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transition: all 0.15s ease; opacity: 0.5;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 40px; z-index: 100;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+    backdrop-filter: blur(2px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; letter-spacing: 4px;
+    color: var(--white); text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--white); text-decoration: none;
+    font-size: 0.8rem; letter-spacing: 3px;
+    text-transform: uppercase; opacity: 0.7;
+    transition: opacity 0.3s, color 0.3s; font-weight: 600;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--accent); }
+
+  #hero {
+    min-height: 100vh; display: flex; align-items: center;
+    position: relative; overflow: hidden; padding: 120px 40px 60px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(0,230,118,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(0,191,165,0.1) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-noise {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+  .hero-content {
+    position: relative; max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .hero-tag {
+    font-family: 'Space Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 4px; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+  }
+  .hero-tag::before { content: ''; display: inline-block; width: 30px; height: 1px; background: var(--accent); }
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 8vw, 8rem); line-height: 0.9;
+    letter-spacing: 2px; margin-bottom: 24px;
+  }
+  .hero-name .line2 { color: var(--accent); }
+  .role-rotator {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem); letter-spacing: 4px;
+    color: var(--gold); height: 2.4rem; overflow: hidden; margin-bottom: 28px;
+  }
+  .role-rotator-inner { display: flex; flex-direction: column; animation: roleSlide 10s infinite; }
+  .role-rotator-inner span { line-height: 2.4rem; }
+  @keyframes roleSlide {
+    0%,18%  { transform: translateY(0); }
+    20%,38% { transform: translateY(-2.4rem); }
+    40%,58% { transform: translateY(-4.8rem); }
+    60%,78% { transform: translateY(-7.2rem); }
+    80%,98% { transform: translateY(-9.6rem); }
+    100%    { transform: translateY(0); }
+  }
+  .hero-desc { font-size: 1rem; line-height: 1.8; opacity: 0.6; max-width: 480px; margin-bottom: 40px; }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: var(--black);
+    padding: 14px 32px; font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; border: 2px solid var(--accent);
+    transition: all 0.3s ease; position: relative; overflow: hidden;
+  }
+  .btn-primary::before {
+    content: ''; position: absolute; inset: 0; background: var(--black);
+    transform: translateX(-100%); transition: transform 0.3s ease; z-index: 0;
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary:hover { color: var(--accent); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 2px solid rgba(245,240,232,0.25); color: var(--white);
+    padding: 14px 32px; font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s ease;
+  }
+  .btn-secondary:hover { border-color: var(--white); background: rgba(245,240,232,0.05); }
+
+  .hero-right { display: flex; flex-direction: column; gap: 28px; }
+  .stat-card {
+    background: rgba(13,26,18,0.6); border: 1px solid rgba(255,255,255,0.06);
+    padding: 24px 28px; position: relative; overflow: hidden;
+    backdrop-filter: blur(10px); cursor: pointer;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .stat-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--accent); transform: scaleY(0); transform-origin: bottom;
+    transition: transform 0.3s ease;
+  }
+  .stat-card:hover { transform: translateX(6px); border-color: rgba(0,230,118,0.3); }
+  .stat-card:hover::before { transform: scaleY(1); }
+  .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1; color: var(--accent); }
+  .stat-label { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; opacity: 0.5; margin-top: 4px; }
+
+  .hero-scroll {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0.4; animation: bounce 2s infinite;
+  }
+  .hero-scroll span { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  section { padding: 100px 40px; position: relative; }
+  .section-tag {
+    font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 5px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); display: inline-block; }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: 2px; line-height: 1; margin-bottom: 60px;
+  }
+  .max-container { max-width: 1200px; margin: 0 auto; }
+
+  #about { background: var(--dark); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-img-wrapper { position: relative; aspect-ratio: 3/4; max-height: 520px; }
+  .about-img-box {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #0d1a12 0%, #071a0e 100%);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-img-box::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,230,118,0.12), transparent 70%);
+  }
+  .about-initials { font-family: 'Bebas Neue', sans-serif; font-size: 10rem; color: rgba(255,255,255,0.04); letter-spacing: -10px; }
+  .about-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--accent); padding: 20px; width: 140px; height: 140px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  }
+  .about-badge .num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; line-height: 1; color: var(--black); }
+  .about-badge .lbl { font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.85; margin-top: 4px; color: var(--black); }
+  .about-corner { position: absolute; top: -20px; left: -20px; border: 2px solid var(--gold); width: 80px; height: 80px; }
+  .about-text p { font-size: 1.05rem; line-height: 1.9; opacity: 0.65; margin-bottom: 20px; }
+  .about-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .pill {
+    padding: 8px 18px; border: 1px solid rgba(255,255,255,0.15);
+    font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 700; transition: all 0.3s; font-family: 'Space Mono', monospace;
+  }
+  .pill:hover { background: var(--accent); border-color: var(--accent); color: var(--black); }
+
+  #services { background: var(--black); }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2px; }
+  .service-card {
+    background: var(--mid); padding: 50px 36px; position: relative;
+    overflow: hidden; transition: background 0.4s; cursor: pointer;
+  }
+  .service-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,230,118,0.08), transparent);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .service-card:hover { background: #0a1a0e; }
+  .service-card:hover::after { opacity: 1; }
+  .service-icon { font-size: 3rem; margin-bottom: 24px; display: block; transition: transform 0.4s ease; }
+  .service-card:hover .service-icon { transform: scale(1.2) rotate(-5deg); }
+  .service-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 14px; color: var(--white); }
+  .service-desc { font-size: 0.88rem; line-height: 1.8; opacity: 0.55; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .service-tag { font-family: 'Space Mono', monospace; font-size: 0.65rem; padding: 4px 10px; background: rgba(255,255,255,0.05); color: var(--teal); letter-spacing: 1px; }
+  .service-number { position: absolute; top: 24px; right: 28px; font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: rgba(255,255,255,0.03); line-height: 1; transition: color 0.4s; }
+  .service-card:hover .service-number { color: rgba(0,230,118,0.07); }
+
+  #skills { background: var(--dark); }
+  .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+  .skill-group { margin-bottom: 40px; }
+  .skill-group-title { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
+  .skill-item { margin-bottom: 18px; }
+  .skill-name { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; font-weight: 600; }
+  .skill-name span:last-child { font-family: 'Space Mono', monospace; color: var(--accent); font-size: 0.75rem; }
+  .skill-bar { height: 2px; background: rgba(255,255,255,0.08); position: relative; overflow: hidden; }
+  .skill-fill { position: absolute; top: 0; left: 0; bottom: 0; background: linear-gradient(90deg, #00e676, #69ffb4); width: 0%; transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1); }
+
+  #sports { background: linear-gradient(135deg, #060f08 0%, #0a1a0d 100%); position: relative; overflow: hidden; }
+  #sports::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(0,191,165,0.1), transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(0,230,118,0.08), transparent 60%);
+  }
+  .sports-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; position: relative; }
+  .sport-card {
+    background: rgba(13,26,18,0.5); border: 1px solid rgba(255,255,255,0.06);
+    padding: 50px 40px; position: relative; overflow: hidden;
+    backdrop-filter: blur(10px); transition: transform 0.4s ease, border-color 0.4s;
+  }
+  .sport-card:hover { transform: translateY(-8px); border-color: rgba(0,191,165,0.4); }
+  .sport-emoji { font-size: 4rem; display: block; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
+  .sport-card:nth-child(2) .sport-emoji { animation-delay: 1.5s; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .sport-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 3px; margin-bottom: 12px; color: var(--white); }
+  .sport-desc { font-size: 0.9rem; line-height: 1.8; opacity: 0.55; margin-bottom: 24px; }
+  .sport-badge { display: inline-block; padding: 6px 16px; background: linear-gradient(90deg, #007a3a, var(--accent)); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--black); }
+
+  .popup-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);
+    z-index: 500; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+  }
+  .popup-overlay.active { opacity: 1; pointer-events: all; }
+  .popup-box {
+    background: var(--mid); border: 1px solid rgba(255,255,255,0.1);
+    max-width: 560px; width: 90%; padding: 60px 50px; position: relative;
+    transform: scale(0.9) translateY(20px); transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .popup-overlay.active .popup-box { transform: scale(1) translateY(0); }
+  .popup-close {
+    position: absolute; top: 20px; right: 24px; background: none; border: none;
+    color: var(--white); font-size: 1.5rem; cursor: pointer; opacity: 0.5;
+    transition: opacity 0.2s, transform 0.2s; font-family: 'Space Mono', monospace;
+  }
+  .popup-close:hover { opacity: 1; transform: rotate(90deg); }
+  .popup-icon { font-size: 3rem; margin-bottom: 20px; display: block; }
+  .popup-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 3px; margin-bottom: 16px; }
+  .popup-text { font-size: 0.9rem; line-height: 1.9; opacity: 0.6; margin-bottom: 28px; }
+  .popup-skills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .popup-skill { padding: 6px 14px; border: 1px solid rgba(0,230,118,0.4); font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 2px; color: var(--accent); }
+
+  #contact { background: var(--dark); }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-headline { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 5vw, 5rem); letter-spacing: 2px; line-height: 1; margin-bottom: 24px; }
+  .contact-headline .accent { color: var(--accent); }
+  .contact-desc { font-size: 1rem; line-height: 1.8; opacity: 0.5; margin-bottom: 40px; }
+  .contact-items { display: flex; flex-direction: column; gap: 16px; }
+  .contact-item {
+    display: flex; align-items: center; gap: 16px; padding: 20px 24px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    text-decoration: none; color: var(--white); transition: all 0.3s;
+  }
+  .contact-item:hover { background: rgba(0,230,118,0.07); border-color: rgba(0,230,118,0.3); transform: translateX(6px); }
+  .contact-icon { font-size: 1.4rem; }
+  .contact-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 3px; }
+  .contact-value { font-size: 0.95rem; font-weight: 600; }
+  .cta-box { background: linear-gradient(135deg, #009944, #006630); padding: 50px 40px; position: relative; overflow: hidden; }
+  .cta-box::before { content: 'HELLO'; position: absolute; right: -20px; bottom: -20px; font-family: 'Bebas Neue', sans-serif; font-size: 8rem; letter-spacing: -5px; color: rgba(0,0,0,0.15); line-height: 1; }
+  .cta-box-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 3px; margin-bottom: 16px; }
+  .cta-box-text { font-size: 0.9rem; line-height: 1.8; opacity: 0.8; margin-bottom: 32px; }
+  .btn-whatsapp { display: inline-flex; align-items: center; gap: 10px; background: var(--black); color: var(--white); padding: 14px 32px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+  .btn-whatsapp:hover { background: var(--white); color: var(--black); }
+
+  footer { background: var(--black); border-top: 1px solid rgba(255,255,255,0.05); padding: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 4px; }
+  .footer-logo span { color: var(--accent); }
+  .footer-copy { font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 2px; opacity: 0.3; text-transform: uppercase; }
+
+  .marquee-wrap { overflow: hidden; background: var(--accent); padding: 14px 0; white-space: nowrap; }
+  .marquee-track { display: inline-flex; animation: marquee 25s linear infinite; }
+  .marquee-item { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 4px; padding: 0 40px; color: var(--black); }
+  .marquee-sep { opacity: 0.4; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 999; width: 0%; transition: width 0.1s; }
+
+  @keyframes pulseglow {
+    0%,100% { box-shadow: 0 0 20px rgba(0,230,118,0.2); }
+    50% { box-shadow: 0 0 40px rgba(0,230,118,0.35); }
+  }
+  .service-card:hover { animation: pulseglow 2s infinite; }
+
+  body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9990; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px; }
+    .nav-links { display: none; }
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .skills-layout { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .sports-grid { grid-template-columns: 1fr; }
+    section { padding: 70px 24px; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<nav>
+  <a href="#hero" class="nav-logo">ADI<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#sports">Sports</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-tag">Creative · Strategic · Precise</div>
+      <h1 class="hero-name">
+        <div>ADI</div>
+        <div class="line2">THYA</div>
+      </h1>
+      <div class="role-rotator">
+        <div class="role-rotator-inner">
+          <span>DIGITAL MARKETER</span>
+          <span>PHOTOGRAPHER</span>
+          <span>VIDEOGRAPHER</span>
+          <span>VIDEO EDITOR</span>
+          <span>GRAPHIC DESIGNER</span>
+        </div>
+      </div>
+      <p class="hero-desc">23-year-old multi-disciplinary creative — turning brands into stories, moments into visuals, and data into growth. 4+ successful freelance accounts. Zero compromises.</p>
+      <div class="hero-cta">
+        <a href="https://wa.me/918197149282" target="_blank" class="btn-primary"><span>🟢 Get in Touch</span></a>
+        <a href="#services" class="btn-secondary">Explore Work →</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-card reveal" onclick="openPopup('dm')">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">Freelance Accounts Managed</div>
+      </div>
+      <div class="stat-card reveal" onclick="openPopup('photo')" style="transition-delay:0.1s">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Frames Captured & Edited</div>
+      </div>
+      <div class="stat-card reveal" onclick="openPopup('sports')" style="transition-delay:0.2s">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Competitive Sports — Pistol & Kabaddi</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+      <rect x="6" y="0" width="4" height="4" fill="currentColor"/>
+      <rect x="6" y="8" width="4" height="4" fill="currentColor" opacity="0.6"/>
+      <rect x="6" y="16" width="4" height="4" fill="currentColor" opacity="0.3"/>
+    </svg>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">DIGITAL MARKETING</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">PHOTOGRAPHY</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">VIDEOGRAPHY</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">VIDEO EDITING</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">GRAPHIC DESIGN</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">BRAND STRATEGY</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">CONTENT CREATION</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">DIGITAL MARKETING</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">PHOTOGRAPHY</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">VIDEOGRAPHY</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">VIDEO EDITING</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">GRAPHIC DESIGN</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">BRAND STRATEGY</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">CONTENT CREATION</span><span class="marquee-item marquee-sep">✦</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="max-container">
+    <div class="section-tag">Who I Am</div>
+    <div class="about-grid">
+      <div class="about-img-wrapper reveal">
+        <div class="about-img-box">
+          <!--
+          ╔══════════════════════════════════════════╗
+          ║         ADD ADITHYA'S PHOTO HERE         ║
+          ║  Option A – same folder: src="adithya.jpg"
+          ║  Option B – online URL: src="https://..."
+          ║  Recommended: portrait, 3:4 ratio        ║
+          ╚══════════════════════════════════════════╝
+          -->
+          <img
+            src=""
+            alt="Adithya"
+            id="profile-photo"
+            style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;position:absolute;inset:0;"
+            onerror="this.style.display='none';document.getElementById('photo-placeholder').style.display='flex';"
+          />
+          <div id="photo-placeholder" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:100%;height:100%;position:absolute;inset:0;">
+            <div style="font-size:3rem;">📷</div>
+            <div style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:3px;color:rgba(0,230,118,0.6);text-align:center;padding:0 20px;">ADD PHOTO<br>set src="" above</div>
+          </div>
+        </div>
+        <div class="about-badge">
+          <div class="num">23</div>
+          <div class="lbl">Years Old</div>
+        </div>
+        <div class="about-corner"></div>
+      </div>
+      <div class="about-text reveal" style="transition-delay:0.2s">
+        <div class="section-tag">About Adithya</div>
+        <h2 class="section-title">Creator.<br>Strategist.<br>Athlete.</h2>
+        <p>I'm Adithya — a 23-year-old multi-disciplinary creative who exists at the intersection of art, strategy, and precision. Whether it's crafting a brand's digital presence, capturing the soul of a moment through a lens, or cutting a story frame by frame — I do it with intent.</p>
+        <p>With 4+ freelance accounts under my belt, I understand what brands need: not just content, but connection. Not just visuals, but value. I bring a full-stack creative perspective that most specialists simply can't offer — from campaign strategy down to the final pixel.</p>
+        <div class="about-pills">
+          <div class="pill">Digital Marketing</div>
+          <div class="pill">Photography</div>
+          <div class="pill">Videography</div>
+          <div class="pill">Video Editing</div>
+          <div class="pill">Graphic Design</div>
+          <div class="pill">Content Strategy</div>
+          <div class="pill">Brand Building</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="max-container">
+    <div class="section-tag">What I Do</div>
+    <h2 class="section-title reveal">Full-Stack<br>Creative Services</h2>
+    <div class="services-grid">
+      <div class="service-card reveal" onclick="openPopup('dm')">
+        <div class="service-number">01</div>
+        <span class="service-icon">📊</span>
+        <div class="service-title">Digital Marketing</div>
+        <p class="service-desc">Strategy-first digital marketing across social platforms. From audience targeting to campaign execution — I grow brands with data-driven creativity and storytelling that converts.</p>
+        <div class="service-tags">
+          <span class="service-tag">Social Media</span><span class="service-tag">Campaigns</span>
+          <span class="service-tag">Analytics</span><span class="service-tag">Growth</span>
+        </div>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.1s" onclick="openPopup('photo')">
+        <div class="service-number">02</div>
+        <span class="service-icon">📸</span>
+        <div class="service-title">Photography</div>
+        <p class="service-desc">Every frame is a decision. Product, portrait, event, sports — I shoot with purpose, compose with instinct, and deliver images that tell the story before a single word is read.</p>
+        <div class="service-tags">
+          <span class="service-tag">Product</span><span class="service-tag">Portrait</span>
+          <span class="service-tag">Events</span><span class="service-tag">Sports</span>
+        </div>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.2s" onclick="openPopup('video')">
+        <div class="service-number">03</div>
+        <span class="service-icon">🎬</span>
+        <div class="service-title">Videography & Editing</div>
+        <p class="service-desc">Cinematic storytelling from shoot to final cut. I handle full-cycle video production — capturing, editing, color grading, and sound design to deliver polished content that lands.</p>
+        <div class="service-tags">
+          <span class="service-tag">Reels</span><span class="service-tag">Brand Films</span>
+          <span class="service-tag">Editing</span><span class="service-tag">Color Grade</span>
+        </div>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.3s" onclick="openPopup('design')">
+        <div class="service-number">04</div>
+        <span class="service-icon">🎨</span>
+        <div class="service-title">Graphic Design</div>
+        <p class="service-desc">Visual identities that stick. From social creatives and thumbnails to brand kits and motion graphics — I design for impact, clarity, and the scroll-stopping second that matters.</p>
+        <div class="service-tags">
+          <span class="service-tag">Branding</span><span class="service-tag">Social Creatives</span>
+          <span class="service-tag">Thumbnails</span><span class="service-tag">Motion</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="max-container">
+    <div class="section-tag">Expertise</div>
+    <h2 class="section-title reveal">Skills &<br>Toolset</h2>
+    <div class="skills-layout">
+      <div>
+        <div class="skill-group reveal">
+          <div class="skill-group-title">// Digital Marketing</div>
+          <div class="skill-item"><div class="skill-name"><span>Social Media Strategy</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Content Planning & Calendars</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Paid Ads & Targeting</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Analytics & Reporting</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88"></div></div></div>
+        </div>
+        <div class="skill-group reveal" style="transition-delay:0.2s">
+          <div class="skill-group-title">// Graphic Design</div>
+          <div class="skill-item"><div class="skill-name"><span>Adobe Photoshop</span><span>92%</span></div><div class="skill-bar"><div class="skill-fill" data-width="92"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Adobe Illustrator</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Canva / Figma</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group reveal" style="transition-delay:0.1s">
+          <div class="skill-group-title">// Photography & Video</div>
+          <div class="skill-item"><div class="skill-name"><span>DSLR / Mirrorless Camera</span><span>94%</span></div><div class="skill-bar"><div class="skill-fill" data-width="94"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Adobe Premiere Pro</span><span>92%</span></div><div class="skill-bar"><div class="skill-fill" data-width="92"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Adobe After Effects</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>DaVinci Resolve / Color</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Lightroom / Photo Editing</span><span>93%</span></div><div class="skill-bar"><div class="skill-fill" data-width="93"></div></div></div>
+        </div>
+        <div class="skill-group reveal" style="transition-delay:0.3s">
+          <div class="skill-group-title">// Soft Skills</div>
+          <div class="skill-item"><div class="skill-name"><span>Creative Direction</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Client Communication</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Precision Under Pressure</span><span>98%</span></div><div class="skill-bar"><div class="skill-fill" data-width="98"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sports">
+  <div class="max-container">
+    <div class="section-tag" style="position:relative">Beyond the Lens</div>
+    <h2 class="section-title reveal" style="position:relative">Athlete.<br>Competitor.<br>Champion.</h2>
+    <div class="sports-grid" style="position:relative">
+      <div class="sport-card reveal" onclick="openPopup('pistol')">
+        <span class="sport-emoji">🔫</span>
+        <div class="sport-title">Pistol Shooter</div>
+        <p class="sport-desc">Competitive pistol shooting demands the kind of precision, mental stillness, and focus that most people never train for. I do. The discipline carries over into everything — every campaign, every frame, every edit.</p>
+        <span class="sport-badge">PROFESSIONAL SHOOTER</span>
+      </div>
+      <div class="sport-card reveal" style="transition-delay:0.15s" onclick="openPopup('kabaddi')">
+        <span class="sport-emoji">💪</span>
+        <div class="sport-title">Kabaddi Player</div>
+        <p class="sport-desc">Kabaddi is strategy, raw energy, and split-second decisions under pressure. A sport where you rely on instinct and team dynamics — skills that directly translate to high-performance collaborative creative work.</p>
+        <span class="sport-badge">COMPETITIVE PLAYER</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="max-container">
+    <div class="contact-inner">
+      <div class="reveal">
+        <div class="section-tag">Let's Connect</div>
+        <div class="contact-headline">Let's Build<br>Something<br><span class="accent">Great.</span></div>
+        <p class="contact-desc">Whether you need a full digital marketing overhaul, a brand film, a stunning photo series, or sharp graphic design — I'm one message away. Let's make it happen.</p>
+        <div class="contact-items">
+          <a href="mailto:ad207669@gmail.com" class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <div class="contact-info"><span class="contact-label">Email</span><span class="contact-value">ad207669@gmail.com</span></div>
+          </a>
+          <a href="tel:+918197149282" class="contact-item">
+            <span class="contact-icon">📞</span>
+            <div class="contact-info"><span class="contact-label">Phone</span><span class="contact-value">+91 81971 49282</span></div>
+          </a>
+          <a href="https://wa.me/918197149282" target="_blank" class="contact-item">
+            <span class="contact-icon">💬</span>
+            <div class="contact-info"><span class="contact-label">WhatsApp</span><span class="contact-value">Chat on WhatsApp →</span></div>
+          </a>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:0.2s">
+        <div class="cta-box">
+          <div class="cta-box-title">Ready to Start?</div>
+          <p class="cta-box-text">Drop me a message on WhatsApp — it's the fastest way to kick off a project, discuss an idea, or just say hi. I respond fast and I mean business.</p>
+          <a href="https://wa.me/918197149282?text=Hey%20Adithya%2C%20I%20found%20your%20portfolio%20and%20I%27d%20love%20to%20work%20with%20you!" target="_blank" class="btn-whatsapp">💬 Get in Touch on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">ADI<span>.</span></div>
+  <div class="footer-copy">© 2025 Adithya · Crafted with precision</div>
+  <div class="footer-copy">ad207669@gmail.com · +91 81971 49282</div>
+</footer>
+
+<!-- POPUPS -->
+<div class="popup-overlay" id="popup-dm" onclick="closeAllPopups(event)">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closeAllPopups()">✕</button>
+    <span class="popup-icon">📊</span>
+    <div class="popup-title">Digital Marketing</div>
+    <p class="popup-text">With 4+ freelance accounts managed, I've built social media presences from scratch, run targeted ad campaigns, created content calendars, and delivered measurable growth. I understand the full marketing funnel — from awareness to conversion — and I know how to make every rupee of ad spend count.</p>
+    <div class="popup-skills">
+      <span class="popup-skill">Instagram Growth</span><span class="popup-skill">Facebook Ads</span>
+      <span class="popup-skill">Content Strategy</span><span class="popup-skill">SEO Basics</span>
+      <span class="popup-skill">Google Ads</span><span class="popup-skill">Email Marketing</span>
+      <span class="popup-skill">Analytics</span><span class="popup-skill">Brand Positioning</span>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popup-photo" onclick="closeAllPopups(event)">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closeAllPopups()">✕</button>
+    <span class="popup-icon">📸</span>
+    <div class="popup-title">Photography</div>
+    <p class="popup-text">I shoot with an eye trained by thousands of frames across product photography, portraits, events, and sports. Every shoot is planned, every shot is intentional. The result: imagery that stands out in a world drowning in visual noise.</p>
+    <div class="popup-skills">
+      <span class="popup-skill">Product Photography</span><span class="popup-skill">Portrait</span>
+      <span class="popup-skill">Event Coverage</span><span class="popup-skill">Sports Photography</span>
+      <span class="popup-skill">Lightroom Editing</span><span class="popup-skill">Studio Lighting</span>
+      <span class="popup-skill">Natural Light</span>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popup-video" onclick="closeAllPopups(event)">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closeAllPopups()">✕</button>
+    <span class="popup-icon">🎬</span>
+    <div class="popup-title">Videography & Editing</div>
+    <p class="popup-text">From handheld doc-style shoots to tripod-steady brand films — I handle the full production pipeline. I edit with Premiere Pro and After Effects, color grade in DaVinci Resolve, and deliver content optimized for every platform: Reels, YouTube, campaigns, and beyond.</p>
+    <div class="popup-skills">
+      <span class="popup-skill">Premiere Pro</span><span class="popup-skill">After Effects</span>
+      <span class="popup-skill">DaVinci Resolve</span><span class="popup-skill">Color Grading</span>
+      <span class="popup-skill">Motion Graphics</span><span class="popup-skill">Reels / Shorts</span>
+      <span class="popup-skill">Brand Films</span><span class="popup-skill">Sound Design</span>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popup-design" onclick="closeAllPopups(event)">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closeAllPopups()">✕</button>
+    <span class="popup-icon">🎨</span>
+    <div class="popup-title">Graphic Design</div>
+    <p class="popup-text">Good design is invisible — great design stops the scroll. I create visuals that work: social creatives, brand identities, thumbnails, posters, and UI-ready assets. I design for the context, the audience, and the goal — never just for aesthetics.</p>
+    <div class="popup-skills">
+      <span class="popup-skill">Adobe Photoshop</span><span class="popup-skill">Illustrator</span>
+      <span class="popup-skill">Canva</span><span class="popup-skill">Figma</span>
+      <span class="popup-skill">Brand Identity</span><span class="popup-skill">Social Creatives</span>
+      <span class="popup-skill">Thumbnails</span><span class="popup-skill">Infographics</span>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popup-pistol" onclick="closeAllPopups(event)">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closeAllPopups()">✕</button>
+    <span class="popup-icon">🎯</span>
+    <div class="popup-title">Pistol Shooting</div>
+    <p class="popup-text">Competitive pistol shooting is 90% mental. Breath control, trigger discipline, sight alignment — it's a sport that rewards stillness and punishes impatience. Training for this has shaped how I approach every creative project: precise, methodical, and calm under pressure.</p>
+    <div class="popup-skills">
+      <span class="popup-skill">10m Air Pistol</span><span class="popup-skill">Focus Training</span>
+      <span class="popup-skill">Pressure Management</span><span class="popup-skill">Precision Sport</span>
+      <span class="popup-skill">Competitive Level</span>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popup-kabaddi" onclick="closeAllPopups(event)">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closeAllPopups()">✕</button>
+    <span class="popup-icon">⚡</span>
+    <div class="popup-title">Kabaddi</div>
+    <p class="popup-text">Kabaddi demands explosive speed, deep strategy, and unshakeable team trust. It's a sport where individual brilliance and collective discipline must co-exist — exactly the balance I bring to every collaborative creative project.</p>
+    <div class="popup-skills">
+      <span class="popup-skill">Team Dynamics</span><span class="popup-skill">Tactical Thinking</span>
+      <span class="popup-skill">Physical Stamina</span><span class="popup-skill">Competitive Spirit</span>
+      <span class="popup-skill">Leadership</span>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popup-sports" onclick="closeAllPopups(event)">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closeAllPopups()">✕</button>
+    <span class="popup-icon">🏆</span>
+    <div class="popup-title">Built Different</div>
+    <p class="popup-text">Adithya is both a professional pistol shooter and a competitive Kabaddi player. Sports shape character — the focus of a marksman and the teamwork of a contact sport athlete combine into a work ethic that's rare in any creative industry.</p>
+    <div class="popup-skills">
+      <span class="popup-skill">Pistol Shooting</span><span class="popup-skill">Kabaddi</span>
+      <span class="popup-skill">Discipline</span><span class="popup-skill">Precision</span>
+      <span class="popup-skill">Teamwork</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const follower = document.getElementById('cursorFollower');
+  let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX - 6 + 'px';
+    cursor.style.top = mouseY - 6 + 'px';
+  });
+
+  function animateFollower() {
+    followerX += (mouseX - followerX - 18) * 0.12;
+    followerY += (mouseY - followerY - 18) * 0.12;
+    follower.style.left = followerX + 'px';
+    follower.style.top = followerY + 'px';
+    requestAnimationFrame(animateFollower);
+  }
+  animateFollower();
+
+  document.querySelectorAll('a, button, .service-card, .stat-card, .sport-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2)'; follower.style.transform = 'scale(1.5)'; follower.style.opacity = '0.8'; });
+    el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; follower.style.transform = 'scale(1)'; follower.style.opacity = '0.5'; });
+  });
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    document.getElementById('progressBar').style.width = (scrollTop / docHeight * 100) + '%';
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => observer.observe(r));
+
+  const skillObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.querySelectorAll('.skill-fill').forEach(bar => { bar.style.width = bar.dataset.width + '%'; });
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('#skills').forEach(s => skillObs.observe(s));
+
+  function openPopup(id) {
+    document.querySelectorAll('.popup-overlay').forEach(p => p.classList.remove('active'));
+    const el = document.getElementById('popup-' + id);
+    if (el) el.classList.add('active');
+  }
+  function closeAllPopups(e) {
+    if (!e || e.target.classList.contains('popup-overlay') || e.target.classList.contains('popup-close')) {
+      document.querySelectorAll('.popup-overlay').forEach(p => p.classList.remove('active'));
+    }
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAllPopups(); });
+</script>
+</body>
+</html>

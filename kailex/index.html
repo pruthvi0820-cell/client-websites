@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KAILEX Technologies</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      color: #e4e4e4;
+      font-family: "Poppins", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background-color: #111;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #d39f0f;
+    }
+
+    header h1 {
+      color: #d39f0f;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #d39f0f;
+    }
+
+    section {
+      padding: 100px 60px;
+      min-height: 100vh;
+    }
+
+    .home {
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      text-align: center;
+      padding-top: 150px;
+    }
+
+    .home h2 {
+      font-size: 2.8rem;
+      color: #d39f0f;
+    }
+
+    .home p {
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-top: 15px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .services {
+      background-color: #141414;
+    }
+
+    .services h2,
+    .founders h2,
+    .dashboard h2,
+    .contact h2 {
+      color: #d39f0f;
+      margin-bottom: 40px;
+      text-align: center;
+      font-size: 2.2rem;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .service {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid #2a2a2a;
+      transition: 0.3s;
+    }
+
+    .service:hover {
+      border: 1px solid #d39f0f;
+      transform: translateY(-5px);
+    }
+
+    .service h3 {
+      color: #d39f0f;
+      margin-bottom: 10px;
+    }
+    .founders {
+      background-color: #020202;
+      text-align: center;
+    }
+
+    .founder-card {
+      display: inline-block;
+      background-color: #1a1a1a;
+      border-radius: 15px;
+      padding: 30px;
+      margin: 20px;
+      width: 250px;
+      transition: 0.3s;
+    }
+
+    .founder-card:hover {
+      background-color: #222;
+      transform: translateY(-5px);
+    }
+
+    .founder-card img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      border: 2px solid #d39f0f;
+    }
+
+    .founder-card h4 {
+      margin-top: 15px;
+      color: #d39f0f;
+    }
+
+    .founder-card p {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+    .founders {
+    padding: 60px 10%;
+    background: #0d0d0d;
+    color: #fff;
+  }
+
+  .founders h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #f1c74d;
+    margin-bottom: 40px;
+
+    .contact form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #1a1a1a;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    input:focus, textarea:focus {
+      outline: 1px solid #d39f0f;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      background-color: #d39f0f;
+      color: black;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #f0b826;
+    }
+
+    footer {
+      background-color: #0a0a0a;
+      padding: 20px;
+      text-align: center;
+      border-top: 1px solid #222;
+      color: #999;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>KAILEX</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#founders">Founders</a></li>
+        <li><a href="#contact">Consultancy</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="home">
+    <h2>Innovate. Automate. Elevate.</h2>
+    <p>At <strong>KAILEX</strong>, Kailex is a forward-thinking technology and innovation company 
+        committed to building digital ecosystems that empower businesses to grow, adapt, and lead 
+        in a rapidly evolving world. Our expertise spans web and app development, AI-powered solutions, 
+        digital consultancy, and business automation systems.
+
+        At Kailex, we believe in transforming ideas into intelligent, scalable, and sustainable digital 
+        realities. With a team of passionate innovators and strategic thinkers, we provide end-to-end 
+        solutions that merge creativity, code, and cutting-edge technology — driving efficiency, 
+        performance, and growth for our clients.</p>
+  </section>
+
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+  
+    <!-- Accordion Structure -->
+    <div class="accordion">
+  
+      <!-- Service 1 -->
+      <div class="accordion-item">
+        <button class="accordion-header">1. Web & App Development Packages</button>
+        <div class="accordion-content">
+          <h4>A. Basic Web Presence</h4>
+          <p><strong>What’s included:</strong> Custom static website (5–10 pages), mobile responsive design, basic UI/UX, domain + hosting setup.</p>
+          <p><strong>Ideal for:</strong> Startups, small businesses.</p>
+          <p><strong>Pricing:</strong> ₹30,000 – ₹50,000 (India) | $500 – $800 (Global)</p>
+  
+          <h4>B. Dynamic Web App</h4>
+          <p><strong>What’s included:</strong> Full-stack web app (React + Node.js), database integration (MongoDB/PostgreSQL), user authentication, API integration, interactive UI.</p>
+          <p><strong>Ideal for:</strong> SaaS startups, e-commerce, internal tools.</p>
+          <p><strong>Pricing:</strong> ₹1,00,000 – ₹3,00,000 (India) | $2,500 – $7,000 (Global)</p>
+  
+          <h4>C. Advanced Web Solutions</h4>
+          <p><strong>What’s included:</strong> Progressive Web Apps, payment gateways, advanced animations (GSAP/Lottie), AI/NLP integration for chatbots.</p>
+          <p><strong>Ideal for:</strong> Enterprise startups, tech-focused businesses.</p>
+          <p><strong>Pricing:</strong> ₹3,00,000 – ₹5,00,000+ (India) | $7,000 – $15,000+ (Global)</p>
+        </div>
+      </div>
+  
+      <!-- Service 2 -->
+      <div class="accordion-item">
+        <button class="accordion-header">2. UI/UX & Design Services</button>
+        <div class="accordion-content">
+          <h4>A. UI/UX Design</h4>
+          <p>Wireframing, prototyping, Figma/Adobe XD design, user flow mapping, responsive layouts.</p>
+  
+          <h4>B. Interactive UI & Animations</h4>
+          <p>CSS/JS animations, Lottie integrations, micro-interactions for apps and websites.</p>
+          <p><strong>Pricing:</strong> Basic: ₹20,000 – ₹50,000 | Advanced: ₹50,000 – ₹1,00,000</p>
+        </div>
+      </div>
+  
+      <!-- Service 3 -->
+      <div class="accordion-item">
+        <button class="accordion-header">3. AI & NLP Services</button>
+        <div class="accordion-content">
+          <h4>A. AI Chatbots</h4>
+          <p>Customer support bots, lead generation bots, GPT or Rasa-based systems.</p>
+  
+          <h4>B. AI Analytics</h4>
+          <p>Sentiment analysis, recommendations, text summarization & keyword extraction.</p>
+          <p><strong>Pricing:</strong> Chatbots: ₹50,000 – ₹3,00,000 | NLP Analytics: ₹50,000 – ₹2,00,000</p>
+        </div>
+      </div>
+  
+      <!-- Service 4 -->
+      <div class="accordion-item">
+        <button class="accordion-header">4. Cloud Computing Services</button>
+        <div class="accordion-content">
+          <h4>A. Cloud Deployment & Hosting</h4>
+          <p>AWS/GCP/Azure hosting, serverless setup, CI/CD pipelines for automated deployment.</p>
+  
+          <h4>B. Cloud Database & Storage</h4>
+          <p>RDS, Firestore, S3 setup – secure, scalable data storage.</p>
+          <p><strong>Pricing:</strong> ₹20,000 – ₹1,50,000 (based on complexity)</p>
+        </div>
+      </div>
+  
+      <!-- Service 5 -->
+      <div class="accordion-item">
+        <button class="accordion-header">5. ERP & CRM Solutions</button>
+        <div class="accordion-content">
+          <h4>A. ERP Setup & Customization</h4>
+          <p>Odoo-based modules (Inventory, HR, Finance), workflow automation, API integrations.</p>
+  
+          <h4>B. CRM Implementation</h4>
+          <p>Salesforce/Zoho/HubSpot integration, custom dashboards, automation workflows.</p>
+          <p><strong>Pricing:</strong> ₹50,000 – ₹5,00,000 per implementation</p>
+        </div>
+      </div>
+  
+      <!-- Service 6 -->
+      <div class="accordion-item">
+        <button class="accordion-header">6. Maintenance & Support Packages</button>
+        <div class="accordion-content">
+          <h4>Basic Maintenance</h4>
+          <p>Uptime monitoring, minor updates, monthly reports.</p>
+  
+          <h4>Advanced Support</h4>
+          <p>ERP/CRM monitoring, cloud CI/CD fixes, AI model updates.</p>
+          <p><strong>Pricing:</strong> ₹5,000 – ₹50,000 per month</p>
+        </div>
+      </div>
+  
+      <!-- Service 7 -->
+      <div class="accordion-item">
+        <button class="accordion-header">7. Premium End-to-End Package</button>
+        <div class="accordion-content">
+          <p>Complete MVP or enterprise-ready solution combining Web/App Development, UI/UX, AI/NLP, Cloud & ERP/CRM.</p>
+          <p><strong>Pricing:</strong> ₹5,00,000+ (India) | $10,000+ (Global)</p>
+  
+          <h4>Optional Add-Ons:</h4>
+          <ul>
+            <li>Custom animations & micro-interactions</li>
+            <li>AI-based recommendations</li>
+            <li>ERP/CRM workflow automation</li>
+            <li>Cloud scaling & monitoring</li>
+          </ul>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  <section id="dashboard" class="dashboard">
+    <h2>KAILEX Dashboard</h2>
+    <p style="text-align:center; color:#ccc;">Coming soon — Real-time analytics, project tracking, and AI-based automation hub.</p>
+  </section>
+
+  <section id="founders" class="founders">
+    <h2>Meet Our Founders</h2>
+  
+    <div class="accordion">
+  
+      <div class="accordion-item">
+        <button class="accordion-header">1. PRUTHVI — Founder & CEO</button>
+        <div class="accordion-content">
+          <p><strong>Background:</strong>PRUTHVI, a forward-thinking entrepreneur with a strong foundation in technology, 
+            fashion innovation, and brand strategy. With hands-on experience in event management, customer experience, 
+            and retail operations at Decathlon and Freakout Gaming Zone, PRUTHVI has cultivated a deep understanding of 
+            consumer behavior and brand identity. Beyond business, her creative drive lies in merging fashion with technology 
+            to craft emotionally intelligent clothing experiences that connect with Gen Z and modern youth culture. </p>
+          <p><strong>Role:</strong> Leads overall company vision and innovation strategy.
+
+            Oversees product development, R&D, and technology integration.
+            
+            Builds and manages partnerships with investors, clients, and industry collaborators.
+            
+            Sets the cultural and creative direction of the company.</p>
+          <p><strong>Vision:</strong> To build a tech ecosystem that bridges human emotion and artificial intelligence — crafting 
+            digital experiences that feel intuitive, personalized, and empowering. The goal is to make technology not just a tool 
+            but a companion for creativity, business, and lifestyle evolution.</p>
+        </div>
+      </div>
+  
+      <div class="accordion-item">
+        <button class="accordion-header">2. ADITHYA — Co-Founder & CTO</button>
+        <div class="accordion-content">
+          <p><strong>Background:</strong> A tech-savvy innovator and operations expert passionate about system optimization, 
+            user experience, and sustainable scalability. ADITHYA has previously contributed to multiple digital transformation 
+            projects, focusing on creating seamless interaction between technology and end-users.
+            With deep expertise in backend engineering, automation, and product lifecycle management, they play a crucial role 
+            in converting visionary concepts into tangible, market-ready products.</p>
+          <p><strong>Role:</strong> Manages day-to-day operations and technical execution.
+
+            Oversees software architecture, system scalability, and team efficiency.
+            
+            Coordinates between design, engineering, and marketing departments for synchronized growth.
+            
+            Ensures technology aligns with the company’s long-term goals and ethical standards.</p>
+          <p><strong>Vision:</strong> To create future-ready digital infrastructures where innovation meets inclusivity — enabling 
+            businesses and individuals to harness technology effortlessly and meaningfully.</p>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  
+  <section id="contact" class="contact">
+    <h2>Book a Consultancy</h2>
+    <form id="appointmentForm">
+      <input type="text" placeholder="Your Full Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <input type="text" placeholder="Company / Startup Name" />
+      <textarea rows="4" placeholder="Tell us what you’re looking for..." required></textarea>
+      <button type="submit">Submit Appointment</button>
+    </form>
+  </section>
+
+
+  <footer>
+    <p>© 2025 KAILEX Technologies. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Simple dynamic confirmation
+    document.getElementById("appointmentForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      alert("Thank you for reaching out to KAILEX! Our team will contact you soon.");
+      this.reset();
+    });
+  </script>
+  
+  <!-- Accordion Styling -->
+  <style>
+    
+    .services {
+      padding: 60px 10%;
+      background: #0b0b0b;
+      color: #fff;
+    }
+  
+    .services h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #f1c74d;
+      margin-bottom: 40px;
+    }
+  
+    .accordion-item {
+      margin-bottom: 15px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #141414;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+  
+    .accordion-header {
+      background: #1a1a1a;
+      color: #f1c74d;
+      font-weight: 600;
+      width: 100%;
+      text-align: left;
+      padding: 18px 20px;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s, color 0.3s;
+    }
+  
+    .accordion-header:hover {
+      background: #2b2b2b;
+      color: #fff;
+    }
+  
+    .accordion-header .icon {
+      font-size: 1.3rem;
+      transition: transform 0.3s ease;
+    }
+  
+    .accordion-header.active .icon {
+      transform: rotate(180deg);
+    }
+  
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 20px;
+      color: #ccc;
+      background: #141414;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+    }
+  
+    .accordion-content.open {
+      padding: 20px;
+      max-height: 1000px; /* Enough for smooth expansion */
+    }
+  
+    .accordion-content h4 {
+      color: #f1c74d;
+      margin-top: 15px;
+    }
+  
+    .accordion-content p {
+      margin: 5px 0 10px;
+      font-size: 0.95rem;
+    }
+  
+    .accordion-content ul {
+      margin-left: 20px;
+    }
+  
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+  
+  <!-- Accordion Functionality -->
+  <script>
+    const headers = document.querySelectorAll('.accordion-header');
+  
+    headers.forEach(header => {
+      // Add icon span
+      const icon = document.createElement('span');
+      icon.classList.add('icon');
+      icon.innerHTML = '➕';
+      header.appendChild(icon);
+  
+      header.addEventListener('click', () => {
+        const currentlyActive = document.querySelector('.accordion-header.active');
+        const content = header.nextElementSibling;
+  
+        // Close the active one if it's not the same
+        if (currentlyActive && currentlyActive !== header) {
+          currentlyActive.classList.remove('active');
+          currentlyActive.querySelector('.icon').innerHTML = '➕';
+          currentlyActive.nextElementSibling.classList.remove('open');
+        }
+  
+        // Toggle current one
+        header.classList.toggle('active');
+        if (header.classList.contains('active')) {
+          icon.innerHTML = '➖';
+          content.classList.add('open');
+        } else {
+          icon.innerHTML = '➕';
+          content.classList.remove('open');
+        }
+      });
+    });
+  </script>
+  </body>
+  </html>
+  
