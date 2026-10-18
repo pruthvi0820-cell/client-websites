@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitgurukannada | Fat Loss & Transformation Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --iron:#1b1a18;
+    --concrete:#262420;
+    --concrete-light:#322f29;
+    --ember:#ff5a1f;
+    --ember-dim:#c9450f;
+    --turmeric:#ffc857;
+    --chalk:#f4efe6;
+    --steel:#9b958a;
+    --font-display:'Anton', sans-serif;
+    --font-body:'Work Sans', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--iron);color:var(--chalk);font-family:var(--font-body);line-height:1.5;position:relative;}
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;opacity:0.05;z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:2;}
+
+  /* HEADER */
+  header{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;position:relative;z-index:10;}
+  .logo{font-family:var(--font-display);font-size:20px;letter-spacing:1px;color:var(--chalk);}
+  .logo span{color:var(--ember);}
+  .ig-pill{
+    display:flex;align-items:center;gap:8px;
+    border:1.5px solid var(--steel);border-radius:999px;padding:8px 16px;
+    font-family:var(--font-mono);font-size:13px;transition:border-color .2s,color .2s;
+  }
+  .ig-pill:hover{border-color:var(--ember);color:var(--ember);}
+
+  /* HERO */
+  .hero{padding:64px 24px 80px;text-align:center;position:relative;}
+  .plate{
+    width:280px;height:280px;border-radius:50%;
+    border:14px solid var(--concrete-light);
+    position:absolute;top:20px;left:50%;transform:translateX(-50%);
+    opacity:0.5;z-index:0;
+  }
+  .plate::after{content:"";position:absolute;inset:34px;border-radius:50%;border:4px solid var(--concrete-light);}
+  .eyebrow{font-family:var(--font-mono);font-size:13px;letter-spacing:3px;color:var(--turmeric);text-transform:uppercase;margin-bottom:18px;position:relative;z-index:2;}
+  h1.headline{
+    font-family:var(--font-display);font-size:clamp(48px,10vw,96px);
+    line-height:0.95;letter-spacing:1px;text-transform:uppercase;color:var(--chalk);
+    text-shadow:2px 2px 0 var(--ember-dim),4px 4px 0 rgba(0,0,0,0.4);
+    position:relative;z-index:2;
+  }
+  .hero p.sub{max-width:480px;margin:24px auto 36px;color:var(--steel);font-size:17px;position:relative;z-index:2;}
+  .cta-primary{
+    display:inline-block;background:var(--ember);color:var(--iron);
+    font-family:var(--font-body);font-weight:700;font-size:15px;letter-spacing:0.5px;
+    padding:16px 36px;border-radius:6px;border:none;cursor:pointer;
+    position:relative;z-index:2;transition:transform .15s,background .2s;
+  }
+  .cta-primary:hover{background:var(--turmeric);transform:translateY(-2px);}
+
+  /* ABOUT */
+  .about{padding:60px 24px;border-top:1px solid var(--concrete-light);border-bottom:1px solid var(--concrete-light);}
+  .about-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:start;}
+  .section-label{font-family:var(--font-mono);font-size:12px;letter-spacing:2px;color:var(--ember);text-transform:uppercase;margin-bottom:14px;}
+  .about h2{font-family:var(--font-display);font-size:32px;text-transform:uppercase;margin-bottom:16px;letter-spacing:0.5px;}
+  .about p{color:var(--steel);font-size:15.5px;margin-bottom:14px;}
+  .ig-card{background:var(--concrete);border-radius:12px;padding:28px;text-align:center;}
+  .ig-card .stamp{width:64px;height:64px;border-radius:50%;border:2px solid var(--turmeric);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+  .ig-card p{color:var(--chalk);font-size:14px;margin-bottom:18px;}
+  .ig-card .cta-secondary{
+    display:inline-block;border:1.5px solid var(--turmeric);color:var(--turmeric);
+    font-family:var(--font-mono);font-size:13px;padding:10px 22px;border-radius:999px;
+    transition:background .2s,color .2s;
+  }
+  .ig-card .cta-secondary:hover{background:var(--turmeric);color:var(--iron);}
+
+  /* BOOKING */
+  .booking{padding:72px 24px 100px;}
+  .booking-head{text-align:center;margin-bottom:40px;}
+  .booking-head h2{font-family:var(--font-display);font-size:36px;text-transform:uppercase;}
+  .booking-head p{color:var(--steel);margin-top:10px;}
+
+  .form-card{max-width:580px;margin:0 auto;background:var(--concrete);border-radius:14px;padding:36px;}
+  .progress-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+  .progress-label{font-family:var(--font-mono);font-size:12px;letter-spacing:1px;color:var(--turmeric);text-transform:uppercase;}
+  .progress-track{height:4px;background:var(--concrete-light);border-radius:4px;margin-bottom:26px;overflow:hidden;}
+  .progress-fill{height:100%;background:var(--ember);width:25%;transition:width .3s;}
+
+  .step{display:none;}
+  .step.active{display:block;animation:fadeIn .25s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  .step h3{font-family:var(--font-display);font-size:20px;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px;}
+  .step .step-note{color:var(--steel);font-size:13.5px;margin-bottom:22px;}
+
+  .field{margin-bottom:18px;}
+  .field label.field-label{display:block;font-size:13px;font-weight:600;color:var(--chalk);margin-bottom:7px;}
+  .field input[type="text"],.field input[type="tel"],.field input[type="number"],
+  .field select,.field textarea{
+    width:100%;background:var(--iron);border:1.5px solid var(--concrete-light);
+    color:var(--chalk);font-family:var(--font-body);font-size:14.5px;
+    padding:12px 14px;border-radius:7px;outline:none;transition:border-color .2s;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ember);}
+  .field textarea{resize:vertical;min-height:90px;}
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+
+  /* Goal options */
+  .goal-options{display:flex;flex-direction:column;gap:10px;}
+  .goal-option{
+    display:flex;align-items:center;gap:12px;
+    border:1.5px solid var(--concrete-light);border-radius:8px;
+    padding:13px 14px;cursor:pointer;transition:border-color .2s,background .2s;
+  }
+  .goal-option:hover{border-color:var(--steel);}
+  .goal-option.checked{border-color:var(--ember);background:rgba(255,90,31,0.08);}
+  .goal-option input{accent-color:var(--ember);}
+  .goal-option span{font-size:14.5px;}
+  .goal-badge{
+    margin-left:auto;font-family:var(--font-mono);font-size:10px;letter-spacing:1px;
+    padding:3px 8px;border-radius:999px;text-transform:uppercase;
+  }
+  .badge-special{background:rgba(255,200,87,0.15);color:var(--turmeric);border:1px solid rgba(255,200,87,0.3);}
+
+  /* Gender options */
+  .gender-options{display:flex;gap:12px;}
+  .gender-option{
+    flex:1;text-align:center;border:1.5px solid var(--concrete-light);
+    border-radius:8px;padding:13px;cursor:pointer;font-size:14px;
+    transition:border-color .2s,background .2s;
+  }
+  .gender-option.checked{border-color:var(--ember);background:rgba(255,90,31,0.08);}
+  .gender-option input{display:none;}
+
+  /* Checkboxes for medical conditions */
+  .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .check-item{
+    display:flex;align-items:center;gap:10px;
+    border:1.5px solid var(--concrete-light);border-radius:8px;
+    padding:11px 13px;cursor:pointer;font-size:13.5px;
+    transition:border-color .2s,background .2s;
+  }
+  .check-item:hover{border-color:var(--steel);}
+  .check-item.checked{border-color:var(--ember);background:rgba(255,90,31,0.08);}
+  .check-item input{accent-color:var(--ember);}
+  .check-item.none-item.checked{border-color:var(--turmeric);background:rgba(255,200,87,0.08);}
+
+  /* Select options (sleep, water, meals) */
+  .select-pills{display:flex;flex-wrap:wrap;gap:9px;}
+  .select-pill{
+    border:1.5px solid var(--concrete-light);border-radius:8px;
+    padding:10px 16px;cursor:pointer;font-size:13.5px;
+    transition:border-color .2s,background .2s;
+  }
+  .select-pill:hover{border-color:var(--steel);}
+  .select-pill.checked{border-color:var(--ember);background:rgba(255,90,31,0.08);}
+  .select-pill input{display:none;}
+
+  /* Disclaimer */
+  .disclaimer-box{
+    background:rgba(255,200,87,0.07);border:1.5px solid rgba(255,200,87,0.25);
+    border-radius:8px;padding:14px 16px;margin-bottom:18px;
+    font-size:13px;color:var(--turmeric);line-height:1.6;
+  }
+
+  /* Photo */
+  .photo-note{background:var(--iron);border-left:3px solid var(--turmeric);padding:14px 16px;border-radius:6px;font-size:13.5px;color:var(--chalk);margin-bottom:18px;}
+  .upload-box{border:1.5px dashed var(--concrete-light);border-radius:10px;padding:24px;text-align:center;cursor:pointer;transition:border-color .2s;}
+  .upload-box:hover{border-color:var(--ember);}
+  .upload-box input{display:none;}
+  .upload-box .upload-label{color:var(--steel);font-size:13.5px;}
+  #photoPreview{max-width:100%;max-height:220px;border-radius:8px;margin-top:14px;display:none;}
+
+  .consent{display:flex;align-items:flex-start;gap:10px;margin-top:18px;font-size:13px;color:var(--steel);}
+  .consent input{margin-top:3px;accent-color:var(--ember);}
+
+  .nav-row{display:flex;justify-content:space-between;margin-top:28px;gap:12px;}
+  .btn-back,.btn-next,.btn-submit{
+    font-family:var(--font-body);font-weight:700;font-size:14px;
+    padding:13px 26px;border-radius:7px;border:none;cursor:pointer;
+  }
+  .btn-back{background:transparent;color:var(--steel);border:1.5px solid var(--concrete-light);}
+  .btn-next,.btn-submit{background:var(--ember);color:var(--iron);margin-left:auto;}
+  .btn-next:hover,.btn-submit:hover{background:var(--turmeric);}
+
+  #formMessage{margin-top:18px;font-size:14px;text-align:center;display:none;padding:12px;border-radius:7px;}
+  #formMessage.success{display:block;background:rgba(76,154,106,0.15);color:#7fc99a;}
+  #formMessage.error{display:block;background:rgba(255,90,31,0.15);color:var(--ember);}
+
+  footer{text-align:center;padding:30px 24px;color:var(--steel);font-size:13px;border-top:1px solid var(--concrete-light);}
+
+  @media (max-width:760px){
+    .about-grid{grid-template-columns:1fr;}
+    .row-2,.row-3{grid-template-columns:1fr 1fr;}
+    .row-3{grid-template-columns:1fr;}
+    .form-card{padding:26px 20px;}
+    .check-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">FIT<span>GURU</span>KANNADA</div>
+  <a class="ig-pill" href="https://instagram.com/fitgurukannada" target="_blank" rel="noopener">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+    @fitgurukannada
+  </a>
+</header>
+
+<section class="hero">
+  <div class="plate"></div>
+  <div class="eyebrow">Bengaluru &middot; Fat Loss &amp; Transformation Coaching</div>
+  <h1 class="headline">Train With<br>Your Guru</h1>
+  <p class="sub">A transformation plan built around your real numbers — not a generic PDF. Coaching explained your way, in Kannada or English.</p>
+  <button class="cta-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Your Consultation</button>
+</section>
+
+<section class="about wrap">
+  <div class="about-grid">
+    <div>
+      <div class="section-label">About Us</div>
+      <h2>Coaching that starts with your body, not a template</h2>
+      <p>Fitgurukannada is a Bengaluru-based fitness coaching service specialising in fat loss, body recomposition, and lean muscle gain. Every client starts the same way: your real stats, lifestyle, and a current photo — so your coach builds a plan around where you actually are.</p>
+      <p>No crash diets, no "lose 10kg in 10 days" promises. Realistic plans, checked in on, and adjusted as you progress.</p>
+    </div>
+    <div class="ig-card">
+      <div class="stamp">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffc857" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="#ffc857"/></svg>
+      </div>
+      <p>See real client transformations and form-check reels on Instagram.</p>
+      <a class="cta-secondary" href="https://instagram.com/fitgurukannada" target="_blank" rel="noopener">@fitgurukannada</a>
+    </div>
+  </div>
+</section>
+
+<section class="booking wrap" id="booking">
+  <div class="booking-head">
+    <div class="section-label" style="text-align:center;">Get Started</div>
+    <h2>Book Your Free Consultation</h2>
+    <p>Takes about 3 minutes. Your coach will reach out on the number you provide.</p>
+  </div>
+
+  <form id="bookingForm" class="form-card" novalidate>
+
+    <div class="progress-row">
+      <span class="progress-label" id="progressLabel">SET 1 OF 4 — YOUR GOAL</span>
+      <span class="progress-label" id="progressPercent">25%</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <!-- ===== STEP 1: GOAL ===== -->
+    <div class="step active" data-step="1">
+      <h3>What's your main goal?</h3>
+      <p class="step-note">Pick the one that fits you best. Your coach will refine the details in the consultation call.</p>
+
+      <div class="goal-options" id="goalOptions">
+        <label class="goal-option"><input type="radio" name="goal_type" value="General Fat Loss" required><span>General fat loss</span></label>
+        <label class="goal-option"><input type="radio" name="goal_type" value="Belly Fat Focus"><span>Belly / stomach fat focus</span></label>
+        <label class="goal-option"><input type="radio" name="goal_type" value="Post-Pregnancy Fat Loss"><span>Post-pregnancy fat loss<br><small style="color:var(--steel);font-size:12px;">Separate plan with core &amp; pelvic recovery focus</small></span><span class="goal-badge badge-special">Specialised</span></label>
+        <label class="goal-option"><input type="radio" name="goal_type" value="PCOD Fat Loss"><span>PCOD / PCOS fat loss<br><small style="color:var(--steel);font-size:12px;">Insulin &amp; hormone-aware approach</small></span><span class="goal-badge badge-special">Specialised</span></label>
+        <label class="goal-option"><input type="radio" name="goal_type" value="Thyroid Fat Loss"><span>Thyroid-related fat loss<br><small style="color:var(--steel);font-size:12px;">Hypo or hyper — note below which one</small></span><span class="goal-badge badge-special">Specialised</span></label>
+        <label class="goal-option"><input type="radio" name="goal_type" value="Full Body Transformation"><span>Full body transformation</span></label>
+        <label class="goal-option"><input type="radio" name="goal_type" value="Lean Gain"><span>Lean gain / body recomposition<br><small style="color:var(--steel);font-size:12px;">Build muscle while staying lean</small></span></label>
+        <label class="goal-option"><input type="radio" name="goal_type" value="Muscle Gain"><span>Muscle gain / bulking<br><small style="color:var(--steel);font-size:12px;">Primarily muscle-building focus</small></span></label>
+        <label class="goal-option"><input type="radio" name="goal_type" value="Other"><span>Other</span></label>
+      </div>
+      <div class="field" id="goalOtherField" style="display:none;margin-top:14px;">
+        <label class="field-label" for="goal_other">Tell us your goal</label>
+        <input type="text" id="goal_other" name="goal_other" placeholder="Describe your goal">
+      </div>
+
+      <div class="nav-row">
+        <span></span>
+        <button type="button" class="btn-next" onclick="goToStep(2)">Next</button>
+      </div>
+    </div>
+
+    <!-- ===== STEP 2: DETAILS ===== -->
+    <div class="step" data-step="2">
+      <h3>Your details</h3>
+      <p class="step-note">So your coach knows who they're speaking to and can build your numbers correctly.</p>
+
+      <div class="field">
+        <label class="field-label" for="name">Full name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="mobile">Mobile number</label>
+        <input type="tel" id="mobile" name="mobile" pattern="[6-9]{1}[0-9]{9}" maxlength="10" placeholder="10-digit number" required>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Gender</label>
+        <div class="gender-options" id="genderOptions">
+          <label class="gender-option"><input type="radio" name="gender" value="Male" required><span>Male</span></label>
+          <label class="gender-option"><input type="radio" name="gender" value="Female"><span>Female</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="referral">How did you find us?</label>
+        <select id="referral" name="referral" required>
+          <option value="" disabled selected>Select one</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Facebook">Facebook</option>
+          <option value="Google Search">Google search</option>
+          <option value="YouTube">YouTube</option>
+          <option value="Friend or Family">Friend or family referral</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="field-label">Height</label>
+        <div class="row-2">
+          <select id="height_ft" name="height_ft" required>
+            <option value="" disabled selected>Feet</option>
+            <option value="4">4 ft</option>
+            <option value="5">5 ft</option>
+            <option value="6">6 ft</option>
+            <option value="7">7 ft</option>
+          </select>
+          <select id="height_in" name="height_in" required>
+            <option value="" disabled selected>Inches</option>
+            <option value="0">0 in</option><option value="1">1 in</option><option value="2">2 in</option>
+            <option value="3">3 in</option><option value="4">4 in</option><option value="5">5 in</option>
+            <option value="6">6 in</option><option value="7">7 in</option><option value="8">8 in</option>
+            <option value="9">9 in</option><option value="10">10 in</option><option value="11">11 in</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row-3">
+        <div class="field">
+          <label class="field-label" for="age">Age</label>
+          <input type="number" id="age" name="age" min="18" max="80" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="current_weight">Current weight (kg)</label>
+          <input type="number" id="current_weight" name="current_weight" min="30" max="200" step="0.1" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="goal_weight">Goal weight (kg)</label>
+          <input type="number" id="goal_weight" name="goal_weight" min="30" max="200" step="0.1" required>
+        </div>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn-back" onclick="goToStep(1)">Back</button>
+        <button type="button" class="btn-next" onclick="goToStep(3)">Next</button>
+      </div>
+    </div>
+
+    <!-- ===== STEP 3: LIFESTYLE & HEALTH ===== -->
+    <div class="step" data-step="3">
+      <h3>Lifestyle &amp; health</h3>
+      <p class="step-note">This helps your coach understand what's actually happening in your daily life — not just on paper.</p>
+
+      <!-- OCCUPATION -->
+      <div class="field">
+        <label class="field-label">What is your occupation?</label>
+        <select id="occupation" name="occupation" required>
+          <option value="" disabled selected>Select your occupation</option>
+          <option value="Student">Student</option>
+          <option value="Office job (sedentary)">Office job (sedentary)</option>
+          <option value="Physical / field job">Physical / field job</option>
+          <option value="Homemaker">Homemaker</option>
+          <option value="Business owner">Business owner</option>
+          <option value="Healthcare worker">Healthcare worker</option>
+          <option value="Teacher / educator">Teacher / educator</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <!-- SLEEP -->
+      <div class="field">
+        <label class="field-label">How many hours do you sleep per night on average?</label>
+        <div class="select-pills" id="sleepPills">
+          <label class="select-pill"><input type="radio" name="sleep_hours" value="Less than 5 hrs" required><span>Less than 5 hrs</span></label>
+          <label class="select-pill"><input type="radio" name="sleep_hours" value="5-6 hrs"><span>5 – 6 hrs</span></label>
+          <label class="select-pill"><input type="radio" name="sleep_hours" value="6-7 hrs"><span>6 – 7 hrs</span></label>
+          <label class="select-pill"><input type="radio" name="sleep_hours" value="7-8 hrs"><span>7 – 8 hrs</span></label>
+          <label class="select-pill"><input type="radio" name="sleep_hours" value="More than 8 hrs"><span>More than 8 hrs</span></label>
+        </div>
+      </div>
+
+      <!-- WATER -->
+      <div class="field">
+        <label class="field-label">How much water do you drink per day?</label>
+        <div class="select-pills" id="waterPills">
+          <label class="select-pill"><input type="radio" name="water_intake" value="Less than 1L" required><span>Less than 1L</span></label>
+          <label class="select-pill"><input type="radio" name="water_intake" value="1 – 1.5L"><span>1 – 1.5L</span></label>
+          <label class="select-pill"><input type="radio" name="water_intake" value="1.5 – 2L"><span>1.5 – 2L</span></label>
+          <label class="select-pill"><input type="radio" name="water_intake" value="2 – 3L"><span>2 – 3L</span></label>
+          <label class="select-pill"><input type="radio" name="water_intake" value="3L+"><span>3L+</span></label>
+        </div>
+      </div>
+
+      <!-- MEALS -->
+      <div class="field">
+        <label class="field-label">How many meals / times do you eat per day?</label>
+        <div class="select-pills" id="mealPills">
+          <label class="select-pill"><input type="radio" name="meals_per_day" value="1-2 meals" required><span>1 – 2 meals</span></label>
+          <label class="select-pill"><input type="radio" name="meals_per_day" value="3 meals"><span>3 meals</span></label>
+          <label class="select-pill"><input type="radio" name="meals_per_day" value="4-5 meals"><span>4 – 5 meals</span></label>
+          <label class="select-pill"><input type="radio" name="meals_per_day" value="6+ meals"><span>6+ meals</span></label>
+        </div>
+      </div>
+
+      <!-- MEDICAL CONDITIONS -->
+      <div class="field">
+        <label class="field-label">Do you have any medical or physical conditions? <span style="color:var(--steel);font-weight:400;">(Select all that apply)</span></label>
+        <div class="disclaimer-box">
+          ⚠️ If you have a serious condition (heart disease, recent surgery, uncontrolled diabetes), please consult your doctor before starting any new fitness programme. Your coach will flag this during the consultation call.
+        </div>
+        <div class="check-grid" id="medicalGrid">
+          <label class="check-item"><input type="checkbox" name="medical_conditions[]" value="PCOD / PCOS"><span>PCOD / PCOS</span></label>
+          <label class="check-item"><input type="checkbox" name="medical_conditions[]" value="Hypothyroidism"><span>Hypothyroidism</span></label>
+          <label class="check-item"><input type="checkbox" name="medical_conditions[]" value="Hyperthyroidism"><span>Hyperthyroidism</span></label>
+          <label class="check-item"><input type="checkbox" name="medical_conditions[]" value="Diabetes (Type 1 or 2)"><span>Diabetes</span></label>
+          <label class="check-item"><input type="checkbox" name="medical_conditions[]" value="High Blood Pressure"><span>High blood pressure</span></label>
+          <label class="check-item"><input type="checkbox" name="medical_conditions[]" value="Back / Spine issues"><span>Back / spine issues</span></label>
+          <label class="check-item"><input type="checkbox" name="medical_conditions[]" value="Knee / Joint pain"><span>Knee / joint pain</span></label>
+          <label class="check-item"><input type="checkbox" name="medical_conditions[]" value="Heart condition"><span>Heart condition</span></label>
+          <label class="check-item"><input type="checkbox" name="medical_conditions[]" value="Asthma"><span>Asthma</span></label>
+          <label class="check-item"><input type="checkbox" name="medical_conditions[]" value="Recent surgery / injury"><span>Recent surgery / injury</span></label>
+          <label class="check-item none-item"><input type="checkbox" name="medical_conditions[]" value="None"><span>None of the above</span></label>
+          <label class="check-item"><input type="checkbox" name="medical_conditions[]" value="Other"><span>Other</span></label>
+        </div>
+        <div class="field" id="medOtherField" style="display:none;margin-top:12px;">
+          <input type="text" id="medical_other" name="medical_other" placeholder="Please describe your condition">
+        </div>
+      </div>
+
+      <!-- CONCERNS -->
+      <div class="field">
+        <label class="field-label" for="concerns">Anything else you want your coach to know?</label>
+        <textarea id="concerns" name="concerns" placeholder="Share any injuries, past diet attempts, medications, goals, or anything you feel is important for your coach to know..."></textarea>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn-back" onclick="goToStep(2)">Back</button>
+        <button type="button" class="btn-next" onclick="goToStep(4)">Next</button>
+      </div>
+    </div>
+
+    <!-- ===== STEP 4: PHOTO ===== -->
+    <div class="step" data-step="4">
+      <h3>Current photo</h3>
+      <p class="step-note">For your coach's body assessment only — never shared publicly, never used in marketing without your written consent.</p>
+
+      <div class="photo-note" id="photoInstructions">
+        Please go back to Step 2 and select your gender — the photo guidelines depend on it.
+      </div>
+
+      <div class="upload-box" onclick="document.getElementById('photo').click()">
+        <input type="file" id="photo" name="photo" accept="image/png, image/jpeg, image/webp" required>
+        <div class="upload-label" id="uploadLabel">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:block;margin:0 auto 10px;opacity:0.5;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Tap to upload a clear, well-lit photo (JPG / PNG / WEBP · max 8MB)
+        </div>
+        <img id="photoPreview" alt="Photo preview">
+      </div>
+
+      <label class="consent">
+        <input type="checkbox" id="consent" name="consent" value="yes" required>
+        <span>I confirm this photo is of me and I consent to sharing it with my Fitgurukannada coach for body assessment and progress tracking only. It will not be used in marketing without separate written consent.</span>
+      </label>
+
+      <div id="formMessage"></div>
+
+      <div class="nav-row">
+        <button type="button" class="btn-back" onclick="goToStep(3)">Back</button>
+        <button type="submit" class="btn-submit">Submit My Details</button>
+      </div>
+    </div>
+
+  </form>
+</section>
+
+<footer>
+  &copy; 2026 Fitgurukannada &middot; Bengaluru, India &middot;
+  <a href="https://instagram.com/fitgurukannada" target="_blank" rel="noopener" style="color:var(--turmeric);">@fitgurukannada</a>
+</footer>
+
+<script>
+  const TOTAL_STEPS = 4;
+  const stepLabels = {
+    1: "SET 1 OF 4 — YOUR GOAL",
+    2: "SET 2 OF 4 — YOUR DETAILS",
+    3: "SET 3 OF 4 — LIFESTYLE & HEALTH",
+    4: "SET 4 OF 4 — YOUR PHOTO"
+  };
+
+  // ---- Navigation ----
+  function goToStep(stepNum) {
+    const currentStep = document.querySelector('.step.active');
+    const currentNum  = parseInt(currentStep.dataset.step);
+
+    // Validate before moving forward
+    if (stepNum > currentNum) {
+      if (!validateStep(currentNum)) return;
+    }
+
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.querySelector(`.step[data-step="${stepNum}"]`).classList.add('active');
+
+    document.getElementById('progressLabel').textContent = stepLabels[stepNum];
+    const pct = Math.round((stepNum / TOTAL_STEPS) * 100);
+    document.getElementById('progressPercent').textContent = pct + '%';
+    document.getElementById('progressFill').style.width = pct + '%';
+
+    document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function validateStep(stepNum) {
+    const step = document.querySelector(`.step[data-step="${stepNum}"]`);
+
+    if (stepNum === 1) {
+      const goalSelected = document.querySelector('input[name="goal_type"]:checked');
+      if (!goalSelected) { alert('Please select a goal to continue.'); return false; }
+      return true;
+    }
+
+    if (stepNum === 2) {
+      const name   = document.getElementById('name').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const ref    = document.getElementById('referral').value;
+      const hft    = document.getElementById('height_ft').value;
+      const hin    = document.getElementById('height_in').value;
+      const age    = document.getElementById('age').value;
+      const cw     = document.getElementById('current_weight').value;
+      const gw     = document.getElementById('goal_weight').value;
+
+      if (!name)   { alert('Please enter your name.'); return false; }
+      if (!/^[6-9]\d{9}$/.test(mobile)) { alert('Please enter a valid 10-digit Indian mobile number.'); return false; }
+      if (!gender) { alert('Please select your gender.'); return false; }
+      if (!ref)    { alert('Please tell us how you found us.'); return false; }
+      if (!hft || hin === '') { alert('Please select your height.'); return false; }
+      if (!age || age < 18 || age > 80) { alert('You must be 18 or older to book (ages 18–80).'); return false; }
+      if (!cw || cw < 30) { alert('Please enter your current weight.'); return false; }
+      if (!gw || gw < 30) { alert('Please enter your goal weight.'); return false; }
+
+      const goalWeight = parseFloat(gw);
+      const currWeight = parseFloat(cw);
+      const goalType   = document.querySelector('input[name="goal_type"]:checked')?.value || '';
+      const isGainGoal = goalType.includes('Muscle Gain') || goalType.includes('Lean Gain');
+
+      if (!isGainGoal && goalWeight >= currWeight) {
+        if (!confirm(`Your goal weight (${goalWeight}kg) is the same or higher than your current weight (${currWeight}kg), but you selected a fat loss goal. Do you want to continue anyway?`)) return false;
+      }
+      return true;
+    }
+
+    if (stepNum === 3) {
+      const occ   = document.getElementById('occupation').value;
+      const sleep = document.querySelector('input[name="sleep_hours"]:checked');
+      const water = document.querySelector('input[name="water_intake"]:checked');
+      const meals = document.querySelector('input[name="meals_per_day"]:checked');
+
+      if (!occ)   { alert('Please select your occupation.'); return false; }
+      if (!sleep) { alert('Please select your average sleep hours.'); return false; }
+      if (!water) { alert('Please select your daily water intake.'); return false; }
+      if (!meals) { alert('Please select how many meals you eat per day.'); return false; }
+      return true;
+    }
+
+    if (stepNum === 4) {
+      const photo   = document.getElementById('photo').files[0];
+      const consent = document.getElementById('consent').checked;
+      if (!photo)   { alert('Please upload a current photo.'); return false; }
+      if (!consent) { alert('Please accept the photo consent to proceed.'); return false; }
+      return true;
+    }
+    return true;
+  }
+
+  // ---- Goal options ----
+  document.querySelectorAll('#goalOptions input').forEach(input => {
+    input.addEventListener('change', () => {
+      document.querySelectorAll('.goal-option').forEach(o => o.classList.remove('checked'));
+      input.closest('.goal-option').classList.add('checked');
+      document.getElementById('goalOtherField').style.display = input.value === 'Other' ? 'block' : 'none';
+    });
+  });
+
+  // ---- Gender options ----
+  document.querySelectorAll('#genderOptions input').forEach(input => {
+    input.addEventListener('change', () => {
+      document.querySelectorAll('.gender-option').forEach(o => o.classList.remove('checked'));
+      input.closest('.gender-option').classList.add('checked');
+      const note = document.getElementById('photoInstructions');
+      if (input.value === 'Male') {
+        note.textContent = "Upload a clear, well-lit photo without a shirt (shirtless), standing straight facing the camera. Good lighting is important — blurry or dark photos make accurate assessment difficult.";
+      } else {
+        note.textContent = "Upload a clear, well-lit photo in fitted clothing or activewear (sports bra / shorts, or similar), standing straight facing the camera. Good lighting is important — blurry or dark photos make accurate assessment difficult.";
+      }
+    });
+  });
+
+  // ---- Sleep pills ----
+  document.querySelectorAll('#sleepPills input').forEach(input => {
+    input.addEventListener('change', () => {
+      document.querySelectorAll('#sleepPills .select-pill').forEach(p => p.classList.remove('checked'));
+      input.closest('.select-pill').classList.add('checked');
+    });
+  });
+
+  // ---- Water pills ----
+  document.querySelectorAll('#waterPills input').forEach(input => {
+    input.addEventListener('change', () => {
+      document.querySelectorAll('#waterPills .select-pill').forEach(p => p.classList.remove('checked'));
+      input.closest('.select-pill').classList.add('checked');
+    });
+  });
+
+  // ---- Meal pills ----
+  document.querySelectorAll('#mealPills input').forEach(input => {
+    input.addEventListener('change', () => {
+      document.querySelectorAll('#mealPills .select-pill').forEach(p => p.classList.remove('checked'));
+      input.closest('.select-pill').classList.add('checked');
+    });
+  });
+
+  // ---- Medical conditions checkboxes ----
+  const medicalGrid  = document.getElementById('medicalGrid');
+  const noneCheckbox = medicalGrid.querySelector('input[value="None"]');
+  const otherMedCb   = medicalGrid.querySelector('input[value="Other"]');
+  const medOtherFld  = document.getElementById('medOtherField');
+
+  medicalGrid.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const item = cb.closest('.check-item');
+      if (cb.checked) item.classList.add('checked');
+      else item.classList.remove('checked');
+
+      // "None" clears everything else
+      if (cb.value === 'None' && cb.checked) {
+        medicalGrid.querySelectorAll('input[type="checkbox"]').forEach(other => {
+          if (other !== noneCheckbox) { other.checked = false; other.closest('.check-item').classList.remove('checked'); }
+        });
+        medOtherFld.style.display = 'none';
+      } else if (cb.value !== 'None' && cb.checked) {
+        // deselect None if anything else is ticked
+        noneCheckbox.checked = false;
+        noneCheckbox.closest('.check-item').classList.remove('checked');
+      }
+
+      // Show "Other" text box
+      medOtherFld.style.display = (otherMedCb.checked) ? 'block' : 'none';
+    });
+  });
+
+  // ---- Photo preview ----
+  document.getElementById('photo').addEventListener('change', function() {
+    const file    = this.files[0];
+    const label   = document.getElementById('uploadLabel');
+    const preview = document.getElementById('photoPreview');
+    if (!file) return;
+    if (file.size > 8 * 1024 * 1024) {
+      alert('Photo is too large. Please upload an image under 8MB.');
+      this.value = '';
+      return;
+    }
+    label.textContent = '✓ ' + file.name;
+    const reader = new FileReader();
+    reader.onload = e => { preview.src = e.target.result; preview.style.display = 'block'; };
+    reader.readAsDataURL(file);
+  });
+
+  // ---- Form submit ----
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!validateStep(4)) return;
+
+    const msg       = document.getElementById('formMessage');
+    const submitBtn = this.querySelector('.btn-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+    msg.style.display = 'none';
+
+    const formData = new FormData(this);
+
+    fetch('submit_booking.php', { method: 'POST', body: formData })
+      .then(res => res.json())
+      .then(data => {
+        msg.className = data.success ? 'success' : 'error';
+        msg.textContent = data.message || (data.success ? 'Submitted!' : 'Something went wrong.');
+        if (data.success) {
+          document.getElementById('bookingForm').reset();
+          document.querySelectorAll('.goal-option,.gender-option,.select-pill,.check-item').forEach(el => el.classList.remove('checked'));
+          document.getElementById('photoPreview').style.display = 'none';
+          document.getElementById('uploadLabel').textContent = 'Tap to upload a clear, well-lit photo (JPG / PNG / WEBP · max 8MB)';
+          document.getElementById('goalOtherField').style.display = 'none';
+          document.getElementById('medOtherField').style.display  = 'none';
+          goToStep(1);
+        }
+      })
+      .catch(() => {
+        msg.className = 'error';
+        msg.textContent = 'Could not reach the server. Please check your connection and try again.';
+      })
+      .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit My Details';
+      });
+  });
+</script>
+</body>
+</html>
